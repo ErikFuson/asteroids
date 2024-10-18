@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from player import Player
 
 def main():
     pygame.init()
@@ -10,6 +11,10 @@ def main():
     # get the delta time from  the framerate
     clock = pygame.time.Clock()
     dt = 0
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    player = Player(x, y)
+    
     
     
     while True:
@@ -17,9 +22,12 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill((BACKGROUND_COLOR))
+        player.draw(screen)
         pygame.display.flip()
-
+        
         dt = (clock.tick(60) / 1000)
+        
+        
         
 
         
