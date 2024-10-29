@@ -35,8 +35,6 @@ def main():
     player = Player(x, y)
 
     Shot.containers = (shoot, drawable, updatable)
-
-    
     
     while True:
         for event in pygame.event.get():
@@ -51,6 +49,13 @@ def main():
                 print("Game Over!")
                 sys.exit()
 
+            for bullet in shoot:
+                if asteroid.collision(bullet):
+                    bullet.kill()
+                    asteroid.split()
+                
+
+
         screen.fill((BACKGROUND_COLOR))
         
         for obj in drawable:
@@ -58,7 +63,7 @@ def main():
 
         pygame.display.flip()
         
-        dt = (clock.tick(120) / 1000)
+        dt = (clock.tick(60) / 1000)
         
         
         
